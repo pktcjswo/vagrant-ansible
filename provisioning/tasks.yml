@@ -1,0 +1,36 @@
+---
+# Manual Stuff (Proxy, Config, APT, ..)
+
+- name: Set timezone variables
+  copy: content={{ tz }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
+  notify:
+    - update timezone
+
+- name: Update .tmux.conf
+  blockinfile:
+    dest: /home/vagrant/.tmux.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (kt2sj.park)"
+    owner: vagrant
+    group: vagrant
+    create: yes
+    mode: 0644
+    content: |
+      set-window-option -g mode-keys vi
+      set-window-option -g pane-base-index 1
+      set -g default-terminal "screen-256color"
+      set -g mouse on
+      #set -g mouse-select-pane on
+      #set -g mouse-resize-pane on
+      #set -g mouse-select-window on
+      bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+      bind -n WheelDownPane select-pane -t= \; send-keys -M
+
+- name: Install essential packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - vim
+    - tmux
+    - git
+    - build-essential
+    - htop
+

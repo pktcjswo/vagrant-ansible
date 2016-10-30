@@ -1,0 +1,14 @@
+---
+# ansible roles
+#
+# Usage:
+# $sudo ansible-galaxy install -c -r requirements.yml
+#
+# @author kt2sj.park
+
+- src: ansiblebit.launchpad-ppa-webupd8
+- src: ansiblebit.oracle-java
+- src: angstwad.docker_ubuntu
+#- src: tkuhlman.zookeeper
+#- src: tkuhlman.kafka
+#- src: mglaman.atom

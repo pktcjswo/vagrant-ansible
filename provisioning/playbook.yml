@@ -1,0 +1,33 @@
+---
+# Ansible playbook
+#
+# Usage:
+#  $ sudo ansible-playbook -i inventory playbook.yml
+#
+# @author kt2sj.park
+
+- name: 
+  hosts: all
+  gather_facts: yes
+  
+  vars:
+  
+  vars_files:
+    - vars.yml
+  
+  become: yes
+  
+  pre_tasks:
+
+  tasks:
+    - include: tasks.yml
+  
+  roles:
+    - ansiblebit.oracle-java
+    - angstwad.docker_ubuntu
+    #- tkuhlman.zookeeper
+    #- tkuhlman.kafka
+    #- mglaman.atom
+
+  handlers:
+    - include: handlers.yml

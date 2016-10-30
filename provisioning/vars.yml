@@ -1,0 +1,13 @@
+---
+tz: 'Asia/Seoul'
+
+oracle_java_set_as_default: yes
+
+zookeeper_hosts: "0.0.0.0:2181"
+zookeeper_client_port: 2181
+
+kafka_hosts: "0.0.0.0:9092"
+kafka_version: '0.8.2.2'
+kafka_id: 0
+kafka_port: 9092
+kafka_log_retention_hours: 72
